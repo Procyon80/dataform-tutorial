@@ -1,6 +1,6 @@
 {
   "defaultLocation": "US",
-  "defaultDatabase": "your-gcp-project-id",
+  "defaultDatabase": "just-keyword-347308",
   "defaultSchema": "analytics",
   "assertionSchema": "dataform_assertions",
   "warehouse": "bigquery",
