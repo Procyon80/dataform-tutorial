@@ -1,0 +1,26 @@
+-- Staging model #1: clean and rename columns from the public USA names dataset.
+-- Dependency: usa_1910_current declaration.
+-- Why this layer exists: keep raw-source complexity out of marts.
+
+config {
+  type: "table",
+  schema: "staging",
+  name: "stg_usa_names",
+  tags: constants.tutorialTags.concat(["staging", "usa_names"]),
+  description: "Cleaned USA baby names records from public dataset"
+}
+
+select
+  -- Keep the year so we can analyze trends over time.
+  year,
+  -- State abbreviation where the birth happened.
+  state,
+  -- Gender from source: F or M.
+  gender,
+  -- Baby first name.
+  name,
+  -- Rename source column `number` to a clearer name.
+  number as birth_count
+from ${ref(constants.usaNamesSource.name)}
+where year >= cast(dataform.projectConfig.vars.tutorial_start_year as int64)
+  and number > 0

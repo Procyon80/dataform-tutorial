@@ -1,0 +1,31 @@
+-- Mart model #1: business-facing table with top 10 names per state
+-- for the latest year in the dataset.
+-- Dependency: int_name_trends_by_state.
+
+config {
+  type: "table",
+  schema: "marts",
+  name: "mart_top_names_latest_year",
+  tags: constants.tutorialTags.concat(["mart", "reporting"]),
+  description: "Top 10 baby names by state for the latest available year"
+}
+
+with base as (
+  select *
+  from ${ref("int_name_trends_by_state")}
+),
+latest_year as (
+  -- Isolate latest year once and reuse in final select.
+  select max(year) as max_year from base
+)
+
+select
+  b.year,
+  b.state,
+  b.name,
+  b.total_births,
+  b.popularity_rank_in_state_year
+from base b
+join latest_year y
+  on b.year = y.max_year
+where b.popularity_rank_in_state_year <= 10

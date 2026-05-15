@@ -1,0 +1,14 @@
+-- Source declaration #1: USA names free public table.
+-- Declarations do not create tables: they tell Dataform that the table
+-- already exists and can be used as an input dependency.
+
+config {
+  type: "declaration",
+  database: constants.usaNamesSource.database,
+  schema: constants.usaNamesSource.schema,
+  name: constants.usaNamesSource.name
+}
+
+-- The query body is ignored for declarations.
+-- Keeping a trivial SELECT clarifies this is not a materialized model.
+select 1 as placeholder

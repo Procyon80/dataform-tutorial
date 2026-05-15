@@ -1,0 +1,10 @@
+{
+  "defaultLocation": "US",
+  "defaultDatabase": "your-gcp-project-id",
+  "defaultSchema": "analytics",
+  "assertionSchema": "dataform_assertions",
+  "warehouse": "bigquery",
+  "vars": {
+    "tutorial_start_year": "2010"
+  }
+}

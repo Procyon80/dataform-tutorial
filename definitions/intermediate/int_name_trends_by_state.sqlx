@@ -1,0 +1,33 @@
+-- Intermediate model: aggregate name popularity by state/year/name.
+-- Dependency: stg_usa_names.
+-- This demonstrates how ref() automatically builds DAG dependencies.
+
+config {
+  type: "table",
+  schema: "intermediate",
+  name: "int_name_trends_by_state",
+  tags: constants.tutorialTags.concat(["intermediate", "aggregation"]),
+  description: "Birth counts by year, state and name with popularity rank"
+}
+
+with grouped as (
+  select
+    year,
+    state,
+    name,
+    sum(birth_count) as total_births
+  from ${ref("stg_usa_names")}
+  group by 1, 2, 3
+)
+
+select
+  year,
+  state,
+  name,
+  total_births,
+  -- Rank names per state and year by popularity.
+  dense_rank() over (
+    partition by year, state
+    order by total_births desc, name asc
+  ) as popularity_rank_in_state_year
+from grouped

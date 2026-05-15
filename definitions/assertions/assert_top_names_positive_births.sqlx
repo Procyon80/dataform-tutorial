@@ -1,0 +1,21 @@
+-- Assertion model: validates data quality in a downstream mart.
+-- Dependency: mart_top_names_latest_year.
+-- Dataform stores assertion failures in assertionSchema.
+
+config {
+  type: "assertion",
+  schema: "assertions",
+  name: "assert_top_names_positive_births",
+  tags: constants.tutorialTags.concat(["assertion", "data_quality"]),
+  description: "Top names mart should never contain non-positive birth totals"
+}
+
+-- Assertion rule: this query should return ZERO rows.
+-- Any row returned is a failure and marks the assertion as failed.
+select
+  year,
+  state,
+  name,
+  total_births
+from ${ref("mart_top_names_latest_year")}
+where total_births <= 0

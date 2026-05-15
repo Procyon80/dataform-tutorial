@@ -1,0 +1,11 @@
+-- Source declaration #2: Shakespeare free public table.
+-- This gives downstream models a stable Dataform dependency handle.
+
+config {
+  type: "declaration",
+  database: constants.shakespeareSource.database,
+  schema: constants.shakespeareSource.schema,
+  name: constants.shakespeareSource.name
+}
+
+select 1 as placeholder

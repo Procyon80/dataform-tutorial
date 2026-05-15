@@ -1,0 +1,18 @@
+-- Mart model #2: easy-to-query view of most frequent Shakespeare words.
+-- Dependency: stg_shakespeare.
+
+config {
+  type: "view",
+  schema: "marts",
+  name: "mart_shakespeare_top_words",
+  tags: constants.tutorialTags.concat(["mart", "text"]),
+  description: "Top Shakespeare words with overall counts"
+}
+
+select
+  word,
+  sum(word_count) as total_word_count,
+  count(distinct corpus) as corpus_count
+from ${ref("stg_shakespeare")}
+group by 1
+qualify row_number() over (order by total_word_count desc, word asc) <= 100
