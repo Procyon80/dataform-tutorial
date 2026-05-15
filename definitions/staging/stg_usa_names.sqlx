@@ -22,5 +22,5 @@ select
   -- Rename source column `number` to a clearer name.
   number as birth_count
 from ${ref(constants.usaNamesSource.name)}
-where year >= cast(dataform.projectConfig.vars.tutorial_start_year as int64)
+where year >= cast(${dataform.projectConfig.vars.tutorial_start_year} as int64)
   and number > 0
