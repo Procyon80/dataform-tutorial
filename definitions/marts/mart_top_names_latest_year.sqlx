@@ -6,7 +6,7 @@ config {
   type: "table",
   schema: "marts",
   name: "mart_top_names_latest_year",
-  tags: constants.tutorialTags.concat(["mart", "reporting"]),
+  tags: constants.tutorialTags.concat(constants.martTags).concat(["reporting"]),
   description: "Top 10 baby names by state for the latest available year"
 }
 

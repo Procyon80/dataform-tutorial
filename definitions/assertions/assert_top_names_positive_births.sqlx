@@ -6,7 +6,7 @@ config {
   type: "assertion",
   schema: "assertions",
   name: "assert_top_names_positive_births",
-  tags: constants.tutorialTags.concat(["assertion", "data_quality"]),
+  tags: constants.tutorialTags.concat(constants.assertionTags),
   description: "Top names mart should never contain non-positive birth totals"
 }
 

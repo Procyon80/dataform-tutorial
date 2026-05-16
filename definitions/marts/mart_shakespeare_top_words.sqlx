@@ -5,7 +5,7 @@ config {
   type: "view",
   schema: "marts",
   name: "mart_shakespeare_top_words",
-  tags: constants.tutorialTags.concat(["mart", "text"]),
+  tags: constants.tutorialTags.concat(constants.martTags).concat(["text"]),
   description: "Top Shakespeare words with overall counts"
 }
 

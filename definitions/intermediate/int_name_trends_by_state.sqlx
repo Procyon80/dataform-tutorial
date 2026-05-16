@@ -6,7 +6,7 @@ config {
   type: "table",
   schema: "intermediate",
   name: "int_name_trends_by_state",
-  tags: constants.tutorialTags.concat(["intermediate", "aggregation"]),
+  tags: constants.tutorialTags.concat(constants.intermediateTags).concat(["aggregation"]),
   description: "Birth counts by year, state and name with popularity rank"
 }
 

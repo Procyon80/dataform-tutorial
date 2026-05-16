@@ -6,7 +6,7 @@ config {
   type: "table",
   schema: "staging",
   name: "stg_usa_names",
-  tags: constants.tutorialTags.concat(["staging", "usa_names"]),
+  tags: constants.tutorialTags.concat(constants.stagingTags).concat(["usa_names"]),
   description: "Cleaned USA baby names records from public dataset"
 }
 

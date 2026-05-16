@@ -4,6 +4,12 @@
 
 module.exports = {
   tutorialTags: ["tutorial", "dataform"],
+
+  // Layer-specific tag groups — combine with tutorialTags via .concat()
+  stagingTags: ["staging"],
+  intermediateTags: ["intermediate"],
+  martTags: ["mart"],
+  assertionTags: ["assertion", "data_quality"],
   usaNamesSource: {
     database: "bigquery-public-data",
     schema: "usa_names",

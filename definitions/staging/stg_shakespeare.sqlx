@@ -5,7 +5,7 @@ config {
   type: "table",
   schema: "staging",
   name: "stg_shakespeare",
-  tags: constants.tutorialTags.concat(["staging", "text"]),
+  tags: constants.tutorialTags.concat(constants.stagingTags).concat(["text"]),
   description: "Normalized Shakespeare word frequencies"
 }
 
